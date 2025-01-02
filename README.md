@@ -27,7 +27,7 @@ Commençons par l'organisation pratique :
    
    # Ajoutez votre dépôt comme nouvelle origine
    git remote add origin https://github.com/[votre-compte]/news-platform
-   
+   b 
    # Poussez le code vers votre dépôt
    git push -u origin main
 ```
