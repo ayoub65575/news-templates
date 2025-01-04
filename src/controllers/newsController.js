@@ -4,6 +4,14 @@ const DUMMY_JSON_URL = 'https://dummyjson.com/posts';
 
 const newsController = {
     // TODO: Question 5 - Implémenter les méthodes du contrôleur
+    async fetchDummyJsonData(req, res, next) {
+        try {
+            const response = await axios.get(DUMMY_JSON_URL);
+            res.status(200).json(response.data);
+        } catch (error) {
+            res.status(500).json({ message: 'Erreur lors de la récupération des données' });
+        }
+    },
     async getAllNews(req, res) {
         try {
             // Utiliser axios pour faire une requête à DummyJSON
