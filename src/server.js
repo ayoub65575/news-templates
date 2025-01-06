@@ -18,3 +18,4 @@ app.use('/api/news', newsRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+

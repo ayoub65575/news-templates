@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const DUMMY_JSON_URL = 'https://dummyjson.com/posts';
+const DUMMY_JSON_URL = 'https://dummyjson.com/products';
 
 const newsController = {
     // TODO: Question 5 - Implémenter les méthodes du contrôleur

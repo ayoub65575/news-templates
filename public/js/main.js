@@ -1,7 +1,7 @@
 // Fonction pour récupérer et afficher les derniers articles
 async function fetchLatestNews() {
     try {
-        const response = await fetch('https://dummyjson.com/products');
+        const response = await fetch('/api/news');
         const data = await response.json();
 
         displayNews(data.products);
@@ -15,20 +15,40 @@ async function fetchLatestNews() {
 function displayNews(news) {
     const container = document.getElementById('news-container');
     // Utilisez Bootstrap pour créer des cards pour chaque article
-    news.forEach(article => {
+    news.forEach(product => {
         const card = document.createElement('div');
         card.classList.add('card', 'mb-3');
         card.innerHTML = `
-            <div class="bg-white rounded-lg shadow hover:shadow-lg transition duration-300 overflow-hidden">
-                <img src="${article.images}" alt="${article.title}" class="w-full h-32 object-cover">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg truncate">${article.title}</h3>
-                   
-                    <a href="#" class="inline-block mt-4 px-4 py-2 text-sm text-white bg-blue-500 rounded hover:bg-blue-600 transition">
-                        Read more
-                    </a>
-                </div>
-            </div>
+            
+
+            <div class=" max-w-sm bg-white  border border-sky-950 shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="#">
+        <img class="rounded-t-lg" src="${product.thumbnail}" alt="product" />
+    </a>
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${product.title.slice(0,15)}...</h5>
+        </a>
+        <p class="mb-4 font-normal text-gray-700 dark:text-gray-400">${product.description.slice(0, 50)}...</p>
+        <div class=" flex items-center justify-between">
+            <button style="
+            background-color: #3b82f6; 
+            color: white; 
+            border-radius: 1rem; 
+            padding: 0.5rem 0.5rem; 
+            border: none; 
+            cursor: pointer; 
+            outline: none; 
+            transition: background-color 0.3s ease, transform 0.2s ease;"
+        onmouseover="this.style.backgroundColor='#1e40af'; this.style.transform='scale(1.05)';" 
+        onmouseout="this.style.backgroundColor='#3b82f6'; this.style.transform='scale(1)';" 
+        onfocus="this.style.backgroundColor='#1e40af';" 
+        onblur="this.style.backgroundColor='#3b82f6';" > 
+                lire la suite
+            </button>
+            <span class="text-gray-900 font-bold">${product.price}$</span>
+    </div>
+</div>
         `;
         container.insertAdjacentElement('beforeend', card);
     });
@@ -37,15 +57,15 @@ function displayNews(news) {
 
 // TODO: Question 2 - Créer une fonction pour gérer les erreurs
 function showError(message) {
-    // Afficher un message d'erreur avec Bootstrap
-    const container = document.getElementById('news-container');
-    container.innerHTML = `
-        <div class="col-span-5 text-center">
-            <div class="bg-red-100 text-red-600 py-4 px-6 rounded">
-                ${message}
-            </div>
-        </div>
-    `;
+    const body = document.querySelector('body'); 
+      
+    body.innerHTML=`
+    <div class=" flex flex-col items-center justify-center h-screen space-y-4 ">
+            <h3>404</h3>
+            <h1>Not found</h1>
+
+        </div>`;
+    
 }
 
 // Initialisation
